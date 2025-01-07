@@ -1,31 +1,27 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Cookies from 'js-cookie'; 
 import estilos from './mapear.module.css';
 
 export default function Mapear({ NomesALunos }) {
     const [presente, setPresente] = useState(() => {
-        if (typeof window !== "undefined") {
-            const savedPresente = localStorage.getItem('presente');
-            return savedPresente ? JSON.parse(savedPresente) : NomesALunos.map(() => ({ count: 0, dates: [] }));
-        }
-        return NomesALunos.map(() => ({ count: 0, dates: [] }));
+    
+        const savedPresente = Cookies.get('presente');
+        return savedPresente ? JSON.parse(savedPresente) : NomesALunos.map(() => ({ count: 0, dates: [] }));
     });
 
     const [falta, setFalta] = useState(() => {
-        if (typeof window !== "undefined") {
-            const savedFalta = localStorage.getItem('falta');
-            return savedFalta ? JSON.parse(savedFalta) : NomesALunos.map(() => ({ count: 0, dates: [] }));
-        }
-        return NomesALunos.map(() => ({ count: 0, dates: [] }));
+        
+        const savedFalta = Cookies.get('falta');
+        return savedFalta ? JSON.parse(savedFalta) : NomesALunos.map(() => ({ count: 0, dates: [] }));
     });
 
     const [mostrarDatas, setMostrarDatas] = useState(NomesALunos.map(() => false));
 
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            localStorage.setItem('presente', JSON.stringify(presente));
-            localStorage.setItem('falta', JSON.stringify(falta));
-        }
+        
+        Cookies.set('presente', JSON.stringify(presente));
+        Cookies.set('falta', JSON.stringify(falta));
     }, [presente, falta]);
 
     function Presente(index) {
@@ -64,10 +60,8 @@ export default function Mapear({ NomesALunos }) {
         const resetData = NomesALunos.map(() => ({ count: 0, dates: [] }));
         setPresente(resetData);
         setFalta(resetData);
-        if (typeof window !== "undefined") {
-            localStorage.removeItem('presente');
-            localStorage.removeItem('falta');
-        }
+        Cookies.remove('presente');
+        Cookies.remove('falta');
     }
 
     return (
@@ -95,8 +89,7 @@ export default function Mapear({ NomesALunos }) {
                                 <td>
                                     <button className={estilos.presente} onClick={() => Presente(index)}>
                                         P
-                                    </button>
-                                    {' - '}
+                                    </button> - 
                                     <button className={estilos.falta} onClick={() => Falta(index)}>
                                         F
                                     </button>
@@ -117,7 +110,7 @@ export default function Mapear({ NomesALunos }) {
                                         </div>
                                     )}
                                 </td>
-                                <td className={estilos.botaoFinal}>
+                                <td className={estilos.botaoFinal}> 
                                     <button onClick={() => MostrarDatas(index)} className={estilos.botaoMostrarDatas}>
                                         &#8592;
                                     </button>
