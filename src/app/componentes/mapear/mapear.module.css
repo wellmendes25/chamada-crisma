@@ -1,0 +1,100 @@
+.tabela {
+    width: auto;
+    border-collapse: collapse;
+
+}
+
+.tabela th,
+.tabela td {
+    width: 200px;
+    border: 1px solid #8C634A;
+    padding: 8px;
+    text-align: left;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tabela th {
+    background-color: #F2D6A2;
+}
+
+.tabela tr:nth-child(even) {
+    background-color: #F2D6A2;
+}
+
+.tabela tr:hover {
+    background-color: #8C634A;
+}
+
+/* botao */
+
+.presente{
+    background-color: rgb(34, 158, 34);
+    color: #050505;
+    cursor: pointer;
+    padding: 8px;
+    font-weight: 700;
+}
+
+.falta{
+    background-color:red;
+    color: #0e0d0d;
+    cursor: pointer;
+    padding: 8px;
+    font-weight: 700;
+}
+
+/* botao reset */
+
+.botaoResetar {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #ff6666;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.botaoResetar:hover {
+    background-color: #ff4d4d;
+}
+
+@media (max-width: 1350px){
+    .tabela th,
+.tabela td {
+    width: 100px;
+    border: 1px solid #8C634A;
+    padding: 8px;
+    text-align: left;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+}
+
+@media (max-width: 850px){
+
+    .tabela {
+        width: 80%;
+        border-collapse: collapse;
+        margin: auto;
+    
+    }
+
+    .tabela th,
+.tabela td {
+ 
+    border: 1px solid #8C634A;
+    text-align: left;
+    font-size: 12px;
+    
+}
+
+
+
+}
+

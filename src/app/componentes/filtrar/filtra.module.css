@@ -1,0 +1,51 @@
+.filterContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.searchbar {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.searchbar h1 {
+    font-size: 24px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.searchbar input {
+    
+    padding: 10px 3%;
+    border-radius: 5px;
+    border: 1px solid #8C634A;
+    font-size: 18px;
+    text-align: left;
+}
+
+.mapAlunos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 850px) {
+    .searchbar h1 {
+        display: none;
+    }
+    
+    .searchbar input {
+        
+        padding: 10px 3%;
+        border-radius: 5px;
+        border: 1px solid #8C634A;
+        font-size: 18px;
+        text-align: left;
+    }
+    
+}
