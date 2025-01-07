@@ -1,23 +1,31 @@
-'use client'
+'use client';
 import { useState, useEffect } from 'react';
-import estilos from './mapear.module.css'
+import estilos from './mapear.module.css';
 
 export default function Mapear({ NomesALunos }) {
     const [presente, setPresente] = useState(() => {
-        const savedPresente = localStorage.getItem('presente');
-        return savedPresente ? JSON.parse(savedPresente) : NomesALunos.map(() => ({ count: 0, dates: [] }));
+        if (typeof window !== "undefined") {
+            const savedPresente = localStorage.getItem('presente');
+            return savedPresente ? JSON.parse(savedPresente) : NomesALunos.map(() => ({ count: 0, dates: [] }));
+        }
+        return NomesALunos.map(() => ({ count: 0, dates: [] }));
     });
 
     const [falta, setFalta] = useState(() => {
-        const savedFalta = localStorage.getItem('falta');
-        return savedFalta ? JSON.parse(savedFalta) : NomesALunos.map(() => ({ count: 0, dates: [] }));
+        if (typeof window !== "undefined") {
+            const savedFalta = localStorage.getItem('falta');
+            return savedFalta ? JSON.parse(savedFalta) : NomesALunos.map(() => ({ count: 0, dates: [] }));
+        }
+        return NomesALunos.map(() => ({ count: 0, dates: [] }));
     });
 
     const [mostrarDatas, setMostrarDatas] = useState(NomesALunos.map(() => false));
 
     useEffect(() => {
-        localStorage.setItem('presente', JSON.stringify(presente));
-        localStorage.setItem('falta', JSON.stringify(falta));
+        if (typeof window !== "undefined") {
+            localStorage.setItem('presente', JSON.stringify(presente));
+            localStorage.setItem('falta', JSON.stringify(falta));
+        }
     }, [presente, falta]);
 
     function Presente(index) {
@@ -27,10 +35,10 @@ export default function Mapear({ NomesALunos }) {
             return;
         }
 
-        const newPresencas = [...presente]; 
+        const newPresencas = [...presente];
         newPresencas[index].count++;
         newPresencas[index].dates.push(data);
-        setPresente(newPresencas); 
+        setPresente(newPresencas);
     }
 
     function Falta(index) {
@@ -40,10 +48,10 @@ export default function Mapear({ NomesALunos }) {
             return;
         }
 
-        const newFaltas = [...falta]; 
-        newFaltas[index].count++; 
+        const newFaltas = [...falta];
+        newFaltas[index].count++;
         newFaltas[index].dates.push(data);
-        setFalta(newFaltas); 
+        setFalta(newFaltas);
     }
 
     function MostrarDatas(index) {
@@ -56,8 +64,10 @@ export default function Mapear({ NomesALunos }) {
         const resetData = NomesALunos.map(() => ({ count: 0, dates: [] }));
         setPresente(resetData);
         setFalta(resetData);
-        localStorage.removeItem('presente');
-        localStorage.removeItem('falta');
+        if (typeof window !== "undefined") {
+            localStorage.removeItem('presente');
+            localStorage.removeItem('falta');
+        }
     }
 
     return (
@@ -71,7 +81,7 @@ export default function Mapear({ NomesALunos }) {
                         <thead>
                             <tr>
                                 <th className={estilos.primeiro}>Nome:</th>
-                                <th >S:</th>
+                                <th>S:</th>
                                 <th>P:</th>
                                 <th>F:</th>
                                 <th>Dias p:</th>
@@ -85,7 +95,8 @@ export default function Mapear({ NomesALunos }) {
                                 <td>
                                     <button className={estilos.presente} onClick={() => Presente(index)}>
                                         P
-                                    </button> - 
+                                    </button>
+                                    {' - '}
                                     <button className={estilos.falta} onClick={() => Falta(index)}>
                                         F
                                     </button>
@@ -106,9 +117,9 @@ export default function Mapear({ NomesALunos }) {
                                         </div>
                                     )}
                                 </td>
-                                <td className={estilos.botaoFinal}> 
+                                <td className={estilos.botaoFinal}>
                                     <button onClick={() => MostrarDatas(index)} className={estilos.botaoMostrarDatas}>
-                                    &#8592;
+                                        &#8592;
                                     </button>
                                 </td>
                             </tr>
