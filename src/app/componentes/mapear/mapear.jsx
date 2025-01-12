@@ -52,7 +52,7 @@ export default function Mapear({ NomesALunos }) {
             </button>
             {NomesALunos.map((aluno, index) => (
                 <section key={aluno.id}>
-                    <div className={estilos}>
+                    <div className={estilos.container}>
                         <table className={estilos.tabela}>
                             <thead>
                                 <tr>

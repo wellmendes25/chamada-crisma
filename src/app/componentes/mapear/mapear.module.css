@@ -12,6 +12,7 @@
     text-align: left;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    font-size: 16px;
 }
 
 .tabela th {
@@ -44,10 +45,7 @@
     font-weight: 700;
 }
 
-.container {
-    width: 70vw;
-    overflow-x: auto;
-}
+
 
 /* botao reset */
 
@@ -75,10 +73,28 @@
     border: 1px solid #8C634A;
     padding: 8px;
     text-align: left;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+
+}
+
+}
+
+@media (max-width: 865px){
+    .tabela th,
+.tabela td {
+    width: 90px;
+    border: 1px solid #8C634A;
+    padding: 8px;
+    text-align: left;
+
 }
 
 }
 
+@media (max-width: 800px){
 
+    .container {
+        width: 60vw;
+        overflow-x: auto;
+    }
+
+}
