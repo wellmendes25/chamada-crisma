@@ -44,6 +44,11 @@
     font-weight: 700;
 }
 
+.container {
+    width: 70vw;
+    overflow-x: auto;
+}
+
 /* botao reset */
 
 .botaoResetar {
@@ -76,25 +81,4 @@
 
 }
 
-@media (max-width: 850px){
-
-    .tabela {
-        width: 80%;
-        border-collapse: collapse;
-        margin: auto;
-    
-    }
-
-    .tabela th,
-.tabela td {
- 
-    border: 1px solid #8C634A;
-    text-align: left;
-    font-size: 12px;
-    
-}
-
-
-
-}
 
